@@ -1,24 +1,25 @@
 @echo off
 REM ===========================================================================
-REM  Restaurant System - Backend API
+REM  Restaurant System  -  start the app
 REM
-REM  Starts the Express API on http://localhost:3000
+REM  ONE service. The Express server serves the REST API *and* the frontend,
+REM  so there is no separate web server to run and no CORS to think about.
 REM
 REM  Requires MariaDB to be running already (start-mariadb.bat), otherwise the
-REM  API starts fine but every data request fails.
+REM  pages load but every data request fails.
 REM ===========================================================================
 
-title Backend - Restaurant System API (http://localhost:3000)
+title Restaurant System (http://localhost:3000)
 
 cd /d "%~dp0backend"
 
 echo.
-echo   Restaurant System - Backend API
+echo   Restaurant System
 echo.
-echo   Folder : %~dp0backend
-echo   URL    : http://localhost:3000
+echo   URL : http://localhost:3000
 echo.
 echo   MariaDB must already be running, or data requests will fail.
+echo   Start it with C:\Users\IFEANYI\mariadb\start-mariadb.bat
 echo.
 echo   Keep this window open while you use the app.
 echo   Press Ctrl+C to stop.
@@ -40,9 +41,11 @@ if not exist "node_modules" (
     )
 )
 
-echo.
+REM Open the browser once the server has had a moment to bind.
+start "" cmd /c "timeout /t 2 >nul & start http://localhost:3000/"
+
 call npm start
 
 echo.
-echo   API stopped.
+echo   Server stopped.
 pause
