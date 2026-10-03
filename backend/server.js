@@ -69,6 +69,68 @@ app.get('/api/health', (req, res) => {
     });
 });
 
+// Deep health check - this one DOES touch the database, and reports exactly
+// what is wrong. Separate from /api/health on purpose, so a database problem
+// never causes the platform to restart a working service.
+//
+// Visit <your-url>/api/health/db to diagnose a deployment where the app loads
+// but nothing can log in. It answers the three questions that matter:
+//   1. can the app reach the database at all?
+//   2. do the tables exist?
+//   3. are there any users to log in with?
+app.get('/api/health/db', async (req, res) => {
+    const pool = require('./config/database');
+
+    let connection;
+
+    try {
+        connection = await pool.getConnection();
+
+        const tables = await connection.query('SHOW TABLES');
+        const tableCount = Array.isArray(tables) ? tables.length : 0;
+
+        let userCount = null;
+        let userError = null;
+
+        try {
+            const rows = await connection.query('SELECT COUNT(*) AS n FROM users');
+            userCount = Number(rows[0].n);
+        } catch (error) {
+            userError = 'the "users" table does not exist yet';
+        }
+
+        res.json({
+            connected: true,
+            host: env.db.host,
+            database: env.db.database,
+            ssl: Boolean(process.env.DB_SSL),
+            table_count: tableCount,
+            user_count: userCount,
+            user_error: userError,
+            verdict: tableCount === 0
+                ? 'CONNECTED BUT EMPTY - run `npm run db:setup` against this database'
+                : (userCount === 0
+                    ? 'TABLES EXIST BUT NO USERS - run `npm run db:accounts`'
+                    : 'LOOKS GOOD - you should be able to log in')
+        });
+
+    } catch (error) {
+        res.status(503).json({
+            connected: false,
+            host: env.db.host,
+            database: env.db.database,
+            error_code: error.code || null,
+            error_message: String(error.message || error).slice(0, 300),
+            verdict: 'CANNOT REACH THE DATABASE - check the DB_* environment variables'
+        });
+
+    } finally {
+        if (connection) {
+            connection.release();
+        }
+    }
+});
+
 
 // ---------------------------------------------------------------------------
 //  Frontend
