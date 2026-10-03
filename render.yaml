@@ -1,0 +1,80 @@
+# ============================================================================
+#  Render blueprint  —  Restaurant Ordering and Inventory System
+# ============================================================================
+#  Deploys the WHOLE application as ONE web service.
+#
+#  The Express server serves the REST API *and* the static frontend from the
+#  same process, which means:
+#    - one service to deploy, monitor and pay for (not two)
+#    - no CORS configuration to get wrong
+#    - the API is same-origin, so no hostname is baked into the frontend
+#
+#  ---------------------------------------------------------------------------
+#  DATABASE — READ THIS
+#  ---------------------------------------------------------------------------
+#  This application speaks MySQL. Render's free managed database is POSTGRES,
+#  and Render does not offer managed MySQL at all.
+#
+#  Rather than rewrite 51 queries, the database comes from Aiven's free MySQL
+#  tier, which is free indefinitely, needs no credit card, and speaks MySQL.
+#
+#  Create the database FIRST, then fill in the DB_* values below (or paste them
+#  into the Render dashboard). Full steps: see DEPLOY.md.
+#
+#  If you would rather keep everything on Render, you must migrate the data
+#  layer to Postgres — that is a real piece of work, not a config change.
+# ============================================================================
+
+services:
+  - type: web
+    name: restaurant-system
+    runtime: node
+    plan: free
+    # Closest Render region to Nigeria. Keep the Aiven database in a European
+    # region too, so the app and the database are not a continent apart.
+    region: frankfurt
+
+    # The repo root is the app; the server lives in backend/.
+    rootDir: backend
+
+    buildCommand: npm install
+    startCommand: npm start
+
+    # Render polls this. It deliberately does not touch the database: a health
+    # check that fails on a database blip makes Render restart a service that
+    # was working fine.
+    healthCheckPath: /api/health
+
+    autoDeploy: true
+
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+
+      # Render generates this once and keeps it. No hardcoded fallback exists
+      # in the code, so the server refuses to start without it.
+      - key: JWT_SECRET
+        generateValue: true
+
+      # --- Database (paste from your Aiven console) --------------------------
+      # sync: false means "prompt for this value, never store it in the repo".
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+
+      # Aiven requires an encrypted connection.
+      - key: DB_SSL
+        value: "true"
+
+      # Left empty on purpose: the frontend is served by this same service, so
+      # requests are same-origin and CORS is not involved. Only set this if you
+      # later host the frontend somewhere else.
+      - key: ALLOWED_ORIGINS
+        value: ""

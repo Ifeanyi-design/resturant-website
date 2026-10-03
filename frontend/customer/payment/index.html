@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment - Restaurant System</title>
+
+    <link rel="stylesheet" href="../../css/tokens.css?v=1">
+    <link rel="stylesheet" href="../../css/components.css?v=1">
+    <link rel="stylesheet" href="../css/style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=2">
+
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+
+</head>
+
+
+<body class="shop">
+
+    <header class="site-nav">
+
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 3v8a2 2 0 0 0 4 0V3"/>
+                    <path d="M7 11v10"/>
+                    <path d="M17 3c-1.7 1-2.5 2.8-2.5 5s.8 3.4 2.5 4v9"/>
+                </svg>
+            </span>
+
+            <span class="brand-text">
+                <strong>UI Restaurant</strong>
+                <small>University of Ibadan</small>
+            </span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Menu</a>
+            <a href="../orders/index.html">My Orders</a>
+            <a href="../profile/index.html">Profile</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="cart-pill" href="../index.html#cart">
+                <span class="icon icon-sm" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="20" r="1.4"/>
+                        <circle cx="18" cy="20" r="1.4"/>
+                        <path d="M2 3h3l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h8.4a1.8 1.8 0 0 0 1.8-1.4L21 7H6"/>
+                    </svg>
+                </span>
+                Cart
+            </a>
+        </div>
+
+    </header>
+
+
+    <main class="page-wrap page-wrap-narrow payment-container">
+
+        <a class="back-link" href="../orders/index.html">
+            <span class="icon icon-sm" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"/>
+                    <path d="M12 19l-7-7 7-7"/>
+                </svg>
+            </span>
+            Back to my orders
+        </a>
+
+
+        <div class="page-head">
+            <p class="section-eyebrow">Step 3 of 3</p>
+            <h1>Complete your payment</h1>
+            <p>Transfer the exact total to the account below, then confirm it here.</p>
+        </div>
+
+
+        <!-- ============================================================
+             Progress
+             ============================================================ -->
+        <div class="steps">
+
+            <span class="step done">
+                <span class="step-num">&#10003;</span>
+                Cart
+            </span>
+
+            <span class="step-sep"></span>
+
+            <span class="step done">
+                <span class="step-num">&#10003;</span>
+                Details
+            </span>
+
+            <span class="step-sep"></span>
+
+            <span class="step current">
+                <span class="step-num">3</span>
+                Payment
+            </span>
+
+        </div>
+
+
+        <!-- ============================================================
+             Order
+             ============================================================ -->
+        <section class="panel">
+
+            <h2>Order</h2>
+
+            <div class="summary-line">
+                <span>Order number</span>
+                <span id="order-id">&mdash;</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Customer</span>
+                <span id="customer-name">&mdash;</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Status</span>
+                <span id="order-status">&mdash;</span>
+            </div>
+
+            <div class="summary-line total">
+                <span>Amount due</span>
+                <span id="order-total">&mdash;</span>
+            </div>
+
+        </section>
+
+
+        <!-- ============================================================
+             Bank transfer
+             ============================================================ -->
+        <section class="bank-card">
+
+            <div class="bank-card-head">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 10l9-6 9 6"/>
+                        <path d="M5 10v9"/>
+                        <path d="M19 10v9"/>
+                        <path d="M3 21h18"/>
+                        <path d="M9 19v-5"/>
+                        <path d="M15 19v-5"/>
+                    </svg>
+                </span>
+                <div>
+                    <strong>Bank transfer</strong>
+                    <br>
+                    <small>Transfer the exact amount, then confirm below.</small>
+                </div>
+            </div>
+
+
+            <div class="bank-card-body">
+
+                <div class="bank-field">
+                    <p class="bank-field-label">Bank</p>
+                    <p class="bank-field-value" id="bank-name">Loading&hellip;</p>
+                </div>
+
+                <div class="bank-field">
+                    <p class="bank-field-label">Account name</p>
+                    <p class="bank-field-value" id="account-name">Loading&hellip;</p>
+                </div>
+
+                <div class="bank-field">
+                    <p class="bank-field-label">Account number</p>
+                    <p class="bank-field-value account-number" id="account-number">Loading&hellip;</p>
+
+                    <div class="copy-row">
+                        <button type="button" id="copy-account-btn" class="action-btn btn-sm">
+                            <span class="icon icon-sm" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="11" height="11" rx="2"/>
+                                    <path d="M5 15V5a2 2 0 0 1 2-2h10"/>
+                                </svg>
+                            </span>
+                            Copy number
+                        </button>
+
+                        <span id="copy-message" class="copy-msg"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================================
+             Confirm
+             ============================================================ -->
+        <div class="form-actions">
+
+            <button type="button" id="transfer-made-btn" class="pay-btn">
+                I have made the transfer
+                <span class="icon icon-sm" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </span>
+            </button>
+
+        </div>
+
+        <p class="hint" style="margin-top: var(--space-3);">
+            The restaurant verifies transfers manually, so your order is confirmed
+            once the payment is approved.
+        </p>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="footer-grid">
+
+            <div>
+                <p class="footer-brand">UI Restaurant</p>
+                <p class="muted">
+                    Good food, great taste, served fresh to the University of Ibadan community.
+                </p>
+            </div>
+
+            <div>
+                <p class="footer-heading">Order</p>
+                <a href="../index.html">Menu</a>
+                <a href="../orders/index.html">My orders</a>
+                <a href="../profile/index.html">Profile</a>
+            </div>
+
+            <div>
+                <p class="footer-heading">Contact</p>
+                <p class="muted">University of Ibadan</p>
+                <p class="muted">Oyo State, Nigeria</p>
+            </div>
+
+        </div>
+
+        <p class="footer-note muted">
+            CSC 302 group project &#183; Restaurant Ordering and Inventory System
+        </p>
+
+    </footer>
+
+
+    <script src="../../js/api.js?v=1"></script>
+
+    <script src="../../js/site-nav.js?v=1"></script>
+
+    <script src="app.js?v=99"></script>
+
+</body>
+
+</html>

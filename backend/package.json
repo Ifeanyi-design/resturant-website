@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Restaurant Ordering and Inventory System - Express API",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "db:setup": "node database/setup.js && node database/add-test-accounts.js",
+    "db:schema": "node database/setup.js schema.sql",
+    "db:seed": "node database/setup.js seed.sql",
+    "db:accounts": "node database/add-test-accounts.js",
+    "db:test": "node test-db.js",
+    "test:auth": "node test/auth.test.js",
+    "test:workflow": "node test/workflow.test.js",
+    "test:recipe": "node test/recipe.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mariadb": "^3.5.4"
+  }
+}

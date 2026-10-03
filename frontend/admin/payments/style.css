@@ -1,0 +1,12 @@
+/* ============================================================================
+ *  PAYMENT MANAGEMENT
+ * ============================================================================
+ *  Everything else comes from css/tokens.css and css/components.css: the shell,
+ *  table container, status pills (.status.pending / .status.paid), the approve
+ *  button and the .message / .error banners. Only the 7-column table needs a
+ *  minimum width so .table-container scrolls rather than crushing the columns.
+ * ========================================================================= */
+
+table {
+    min-width: 850px;
+}

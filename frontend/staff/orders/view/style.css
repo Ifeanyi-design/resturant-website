@@ -1,0 +1,29 @@
+/* ============================================================================
+ *  Staff > Orders > Order detail
+ * ============================================================================
+ *  The shared layer covers the card, table, status pill and page layout.
+ *  Kept here:
+ *    - .info label rows and the .total line, which app.js renders directly
+ *    - the app.js card is flattened because the surrounding .panel already
+ *      supplies the surface, so a second border would double-box the content
+ * ========================================================================= */
+
+#order-details .order-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    margin-bottom: var(--space-5);
+}
+
+.info {
+    margin: var(--space-2) 0;
+}
+
+.total {
+    margin-top: var(--space-5);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    font-variant-numeric: tabular-nums;
+}

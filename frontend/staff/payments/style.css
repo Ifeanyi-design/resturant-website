@@ -1,0 +1,20 @@
+/* ============================================================================
+ *  Staff > Payments
+ * ============================================================================
+ *  The shared layer covers everything, including the .status.paid / .pending /
+ *  .failed pills app.js renders. Kept here:
+ *    - a min-width so the seven-column table can scroll on small screens
+ * ========================================================================= */
+
+table {
+    min-width: 900px;
+}
+
+/* A full-width cell is a loading, empty or "no match" placeholder rather than
+   data, so it reads as one calm centred line. */
+tbody td[colspan] {
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+}

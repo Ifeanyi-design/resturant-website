@@ -1,0 +1,30 @@
+/* ============================================================================
+ *  Sign-up page
+ * ============================================================================
+ *  The split-screen shell lives in css/components.css. The only thing this page
+ *  changes is which dish appears behind the brand panel, so signing up does not
+ *  look identical to signing in.
+ * ========================================================================= */
+
+.auth-brand {
+    background:
+        radial-gradient(760px 460px at 22% 12%, rgba(228, 87, 46, 0.46), transparent 62%),
+        linear-gradient(180deg, rgba(20, 17, 15, 0.68) 0%, rgba(20, 17, 15, 0.90) 100%),
+        url('../../assets/menu/jollof-rice.jpg') center / cover no-repeat,
+        var(--color-dark);
+}
+
+#signup-message:empty {
+    display: none;
+}
+
+#signup-message {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
+    border: 1px solid rgba(192, 57, 43, 0.22);
+}

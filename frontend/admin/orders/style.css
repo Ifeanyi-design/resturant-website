@@ -1,0 +1,17 @@
+/* ============================================================================
+ *  ORDER MANAGEMENT
+ * ============================================================================
+ *  The shell, page header, refresh button and table all come from the shared
+ *  layer. app.js injects one .view-btn into every row, so that generated class
+ *  is the only thing this screen has to style itself.
+ * ========================================================================= */
+
+.view-btn {
+    background: var(--color-info-soft);
+    color: var(--color-info);
+}
+
+.view-btn:hover:not(:disabled) {
+    background: var(--color-info);
+    color: var(--color-surface);
+}

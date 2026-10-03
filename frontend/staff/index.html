@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Staff Dashboard - UI Restaurant</title>
+
+    <link rel="stylesheet" href="../css/tokens.css?v=1">
+    <link rel="stylesheet" href="../css/components.css?v=1">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+
+</head>
+
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- Rendered by ../js/shell.js -->
+        <aside class="sidebar" id="app-sidebar"></aside>
+
+
+        <div class="shell-main">
+
+            <header class="shell-header">
+
+                <div>
+                    <h1>Staff dashboard</h1>
+                    <p>What needs doing right now</p>
+                </div>
+
+                <div class="shell-header-actions">
+
+                    <button type="button" id="nav-toggle" aria-label="Toggle navigation">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18"/>
+                                <path d="M3 12h18"/>
+                                <path d="M3 18h18"/>
+                            </svg>
+                        </span>
+                    </button>
+
+                    <a class="action-btn" href="orders/index.html">
+                        <span class="icon icon-sm" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 3h6l1 3H8l1-3z"/>
+                                <path d="M4 7h16l-1.2 12.2A2 2 0 0 1 16.8 21H7.2a2 2 0 0 1-2-1.8L4 7z"/>
+                            </svg>
+                        </span>
+                        Go to orders
+                    </a>
+
+                </div>
+
+            </header>
+
+
+            <main class="shell-content">
+
+                <!-- ====================================================
+                     Live counts
+                     ==================================================== -->
+                <section class="stat-grid">
+
+                    <article class="stat-card">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="stat-label">In progress</p>
+                            <p class="stat-value" id="stat-active">&mdash;</p>
+                        </div>
+                    </article>
+
+
+                    <article class="stat-card">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 3h6l1 3H8l1-3z"/>
+                                <path d="M4 7h16l-1.2 12.2A2 2 0 0 1 16.8 21H7.2a2 2 0 0 1-2-1.8L4 7z"/>
+                                <path d="M9 12h6"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="stat-label">Total orders</p>
+                            <p class="stat-value" id="stat-orders">&mdash;</p>
+                        </div>
+                    </article>
+
+
+                    <article class="stat-card">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/>
+                                <path d="M2.5 10h19"/>
+                                <path d="M6.5 14.5h3"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="stat-label">Awaiting approval</p>
+                            <p class="stat-value" id="stat-pending-payments">&mdash;</p>
+                        </div>
+                    </article>
+
+
+                    <article class="stat-card">
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 8l-9-5-9 5 9 5 9-5z"/>
+                                <path d="M3 8v8l9 5 9-5V8"/>
+                                <path d="M12 13v8"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="stat-label">Low stock</p>
+                            <p class="stat-value" id="stat-low-stock">&mdash;</p>
+                        </div>
+                    </article>
+
+                </section>
+
+
+                <!-- ====================================================
+                     Orders needing action
+                     ==================================================== -->
+                <section class="panel">
+
+                    <h3>
+                        Orders in progress
+                        <span class="hint">pending, preparing and ready</span>
+                    </h3>
+
+                    <div class="table-container">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Customer</th>
+                                    <th>Placed</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                    <th>
+                                        <span class="sr-only">Open</span>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="active-orders-body">
+                                <tr>
+                                    <td colspan="6" class="muted">Loading orders&hellip;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ====================================================
+                     Shortcuts
+                     ==================================================== -->
+                <h2 class="shell-section-title">Shortcuts</h2>
+
+                <section class="dashboard-grid">
+
+                    <a href="orders/index.html" class="dashboard-card">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 3h6l1 3H8l1-3z"/>
+                                <path d="M4 7h16l-1.2 12.2A2 2 0 0 1 16.8 21H7.2a2 2 0 0 1-2-1.8L4 7z"/>
+                                <path d="M9 12h6"/>
+                            </svg>
+                        </span>
+                        <h3>Orders</h3>
+                        <p>View and progress customer orders.</p>
+                    </a>
+
+                    <a href="menu/index.html" class="dashboard-card">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 3v8a2 2 0 0 0 4 0V3"/>
+                                <path d="M7 11v10"/>
+                                <path d="M17 3c-1.7 1-2.5 2.8-2.5 5s.8 3.4 2.5 4v9"/>
+                            </svg>
+                        </span>
+                        <h3>Menu</h3>
+                        <p>See what is available today.</p>
+                    </a>
+
+                    <a href="inventory/index.html" class="dashboard-card">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 8l-9-5-9 5 9 5 9-5z"/>
+                                <path d="M3 8v8l9 5 9-5V8"/>
+                                <path d="M12 13v8"/>
+                            </svg>
+                        </span>
+                        <h3>Inventory</h3>
+                        <p>Check stock levels.</p>
+                    </a>
+
+                    <a href="customers/index.html" class="dashboard-card">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20"/>
+                                <circle cx="9.5" cy="7" r="3.5"/>
+                                <path d="M21 20v-1.5a4 4 0 0 0-3-3.87"/>
+                            </svg>
+                        </span>
+                        <h3>Customers</h3>
+                        <p>Look up customer details.</p>
+                    </a>
+
+                    <a href="payments/index.html" class="dashboard-card">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/>
+                                <path d="M2.5 10h19"/>
+                                <path d="M6.5 14.5h3"/>
+                            </svg>
+                        </span>
+                        <h3>Payments</h3>
+                        <p>See which orders have been paid.</p>
+                    </a>
+
+                    <a href="../admin/reports/index.html" class="dashboard-card">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 20V10"/>
+                                <path d="M10 20V4"/>
+                                <path d="M16 20v-7"/>
+                                <path d="M22 20H2"/>
+                            </svg>
+                        </span>
+                        <h3>Reports</h3>
+                        <p>Sales, orders and stock summaries.</p>
+                    </a>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <div class="nav-scrim"></div>
+
+
+    <script src="../js/api.js?v=1"></script>
+
+    <script src="../js/shell.js?v=1"></script>
+
+    <script src="js/app.js?v=2"></script>
+
+</body>
+
+</html>

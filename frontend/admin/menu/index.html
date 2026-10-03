@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Menu Management - UI Restaurant</title>
+
+    <link rel="stylesheet" href="../../css/tokens.css?v=1">
+    <link rel="stylesheet" href="../../css/components.css?v=1">
+    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- Rendered by ../../js/shell.js -->
+        <aside class="sidebar" id="app-sidebar"></aside>
+
+        <div class="shell-main">
+
+            <header class="shell-header">
+
+                <div>
+                    <h1>Menu Management</h1>
+                    <p>Add, edit and price the dishes you sell</p>
+                </div>
+
+                <div class="shell-header-actions">
+
+                    <button type="button" id="nav-toggle" aria-label="Toggle navigation">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18"/>
+                                <path d="M3 12h18"/>
+                                <path d="M3 18h18"/>
+                            </svg>
+                        </span>
+                    </button>
+
+                    <button id="add-menu-btn" class="add-btn">
+                        + Add Menu Item
+                    </button>
+
+                </div>
+
+            </header>
+
+            <main class="shell-content">
+
+                <div id="message" role="status" aria-live="polite"></div>
+
+                <!-- MENU TABLE -->
+
+                <section class="panel">
+
+                    <h3>
+                        Menu items
+                        <span class="hint">everything currently on sale</span>
+                    </h3>
+
+                    <div class="table-container">
+
+                        <table data-tools data-tools-placeholder="Search menu items...">
+
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Item name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Availability</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="menu-table-body">
+
+                                <tr>
+                                    <td colspan="6">
+                                        <p class="muted">Loading&hellip;</p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ADD MENU FORM -->
+
+                <section id="menu-form-section" class="form-section panel" style="display: none;">
+
+                    <h2>Add Menu Item</h2>
+
+                    <form id="menu-form">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="item-name">Item name</label>
+                                <input type="text" id="item-name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category-id">Category</label>
+                                <select id="category-id" required>
+                                    <option value="">Select category</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Price (&#8358;)</label>
+                                <input type="number" id="price" min="0" step="0.01" required>
+                                <span class="field-hint">What the customer pays</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="availability">Availability</label>
+                                <label class="checkbox" for="availability">
+                                    <input type="checkbox" id="availability" checked>
+                                    Available
+                                </label>
+                                <span class="field-hint">Uncheck to hide this item from the customer menu</span>
+                            </div>
+
+                            <div class="form-group span-2">
+                                <label for="description">Description</label>
+                                <textarea id="description"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button type="submit" class="save-btn">
+                                Save Menu Item
+                            </button>
+
+                            <button type="button" id="cancel-btn" class="cancel-btn">
+                                Cancel
+                            </button>
+
+                        </div>
+
+                        <p id="form-message"></p>
+
+                    </form>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <div class="nav-scrim"></div>
+
+
+    <script src="../../js/api.js?v=1"></script>
+
+    <script src="../../js/shell.js?v=1"></script>
+
+    <script src="../../js/table-tools.js?v=1"></script>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

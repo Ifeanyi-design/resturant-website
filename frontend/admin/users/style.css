@@ -1,0 +1,15 @@
+/* ============================================================================
+ *  USER MANAGEMENT
+ * ============================================================================
+ *  Everything else comes from css/tokens.css and css/components.css: the shell,
+ *  panel, the shared .form-grid of .form-group fields, table, buttons
+ *  (.save-btn/.cancel-btn/.action-btn/.edit-btn/.delete-btn) and the
+ *  .field-hint helper. Only one thing is screen-specific: the 6-column table
+ *  needs a minimum width so .table-container scrolls.
+ *
+ *  The form itself is always visible here; app.js only toggles #cancel-btn.
+ * ========================================================================= */
+
+table {
+    min-width: 750px;
+}

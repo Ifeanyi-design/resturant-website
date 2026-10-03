@@ -1,0 +1,15 @@
+/* ============================================================================
+ *  INVENTORY MANAGEMENT
+ * ============================================================================
+ *  Everything else comes from css/tokens.css and css/components.css. Only one
+ *  thing is screen-specific: the 9-column table needs a minimum width so the
+ *  shared .table-container scrolls instead of crushing the columns.
+ *
+ *  The add/edit form is now a shared .form-grid of .form-group fields, and is
+ *  hidden with an inline style on #inventory-form-section, which app.js flips
+ *  to "block".
+ * ========================================================================= */
+
+table {
+    min-width: 950px;
+}

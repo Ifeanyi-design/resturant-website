@@ -1,0 +1,23 @@
+/* ============================================================================
+ *  BANK ACCOUNTS
+ * ============================================================================
+ *  Everything else comes from css/tokens.css and css/components.css: the shell,
+ *  the shared .form-grid of .form-group fields, buttons, the .hidden helper and
+ *  the .account-card / .account-info / .account-actions blocks. Only these are
+ *  screen-specific:
+ *
+ *    1. the shared pills have no "active" state - the base .status already
+ *       covers the neutral "inactive" look, so only .status.active is added;
+ *    2. the card heading needs a little space above its detail rows.
+ *
+ *  The form is shown/hidden by app.js via the .hidden class on #form-section.
+ * ========================================================================= */
+
+.status.active {
+    background: var(--color-success-soft);
+    color: var(--color-success);
+}
+
+.account-card h3 {
+    margin-bottom: var(--space-2);
+}

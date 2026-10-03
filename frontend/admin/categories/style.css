@@ -1,0 +1,13 @@
+/* ============================================================================
+ *  CATEGORY MANAGEMENT
+ * ============================================================================
+ *  Everything visual comes from tokens.css + components.css. The add/edit form
+ *  is a shared .form-grid of .form-group fields, hidden with an inline style on
+ *  #category-form-section, which app.js flips to "block". The only rule this
+ *  screen genuinely needs is the one below.
+ * ========================================================================= */
+
+/* app.js writes status text ("Saving...", success, error) into this node. */
+#form-message:not(:empty) {
+    margin-top: var(--space-4);
+}

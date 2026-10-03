@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order food - Restaurant System</title>
+
+    <link rel="stylesheet" href="../css/tokens.css?v=1">
+    <link rel="stylesheet" href="../css/components.css?v=1">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+
+</head>
+
+<body class="shop">
+
+    <!-- ============================================================
+         Announcement bar
+         ============================================================ -->
+    <div class="announce">
+
+        <span>
+            <span class="icon icon-sm" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7h11v9H3z"/>
+                    <path d="M14 10h4l3 3v3h-7z"/>
+                    <circle cx="7" cy="18" r="1.6"/>
+                    <circle cx="17.5" cy="18" r="1.6"/>
+                </svg>
+            </span>
+            Free delivery on campus orders over &#8358;5,000
+        </span>
+
+        <span class="announce-right">
+            <span class="icon icon-sm" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15.5v3a2 2 0 0 1-2.2 2 19 19 0 0 1-8.3-3 18.6 18.6 0 0 1-5.7-5.7 19 19 0 0 1-3-8.4A2 2 0 0 1 3.8 1.2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 8.9a15 15 0 0 0 5.7 5.7l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>
+                </svg>
+            </span>
+            24/7 campus support
+        </span>
+
+    </div>
+
+
+    <!-- ============================================================
+         Navigation
+         ============================================================ -->
+    <header class="site-nav">
+
+        <a class="brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 3v8a2 2 0 0 0 4 0V3"/>
+                    <path d="M7 11v10"/>
+                    <path d="M17 3c-1.7 1-2.5 2.8-2.5 5s.8 3.4 2.5 4v9"/>
+                </svg>
+            </span>
+
+            <span class="brand-text">
+                <strong>UI Restaurant</strong>
+                <small>University of Ibadan</small>
+            </span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html" aria-current="page">Menu</a>
+            <a href="orders/index.html">My Orders</a>
+            <a href="profile/index.html">Profile</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <a class="cart-pill" href="#cart">
+                <span class="icon icon-sm" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="20" r="1.4"/>
+                        <circle cx="18" cy="20" r="1.4"/>
+                        <path d="M2 3h3l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h8.4a1.8 1.8 0 0 0 1.8-1.4L21 7H6"/>
+                    </svg>
+                </span>
+                <span id="cart-count">0</span>
+            </a>
+
+            <button id="logout-btn" type="button" class="btn-sm">Logout</button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- ============================================================
+             Hero
+             ============================================================ -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="hero-eyebrow">Fresh &#183; Tasty &#183; Made to order</p>
+
+                <h1>
+                    Delicious food,<br>
+                    <em>delivered</em> to you
+                </h1>
+
+                <p class="hero-lead">
+                    Your favourite meals from the campus kitchen, prepared fresh and
+                    ready when you are.
+                </p>
+
+                <div class="hero-actions">
+                    <button onclick="scrollToMenu()" class="hero-cta">
+                        Order now
+                        <span class="icon icon-sm" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"/>
+                                <path d="M13 6l6 6-6 6"/>
+                            </svg>
+                        </span>
+                    </button>
+
+                    <button onclick="scrollToMenu()" class="hero-ghost">
+                        Explore menu
+                    </button>
+                </div>
+
+                <div class="hero-trust">
+
+                    <div class="hero-trust-item">
+                        <span class="icon icon-sm" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3l7 3.5v5c0 4.2-2.9 8-7 9.5-4.1-1.5-7-5.3-7-9.5v-5z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </span>
+                        <span>Fresh ingredients</span>
+                    </div>
+
+                    <div class="hero-trust-item">
+                        <span class="icon icon-sm" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                        </span>
+                        <span>Ready in 30 mins</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-visual">
+
+                <img src="../assets/menu/hero.jpg"
+                     alt="A spread of grilled dishes with flatbread and dipping sauce"
+                     width="900" height="675">
+
+                <div class="hero-badge">
+                    <span class="icon icon-sm" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7h11v9H3z"/>
+                            <path d="M14 10h4l3 3v3h-7z"/>
+                            <circle cx="7" cy="18" r="1.6"/>
+                            <circle cx="17.5" cy="18" r="1.6"/>
+                        </svg>
+                    </span>
+                    <div>
+                        <strong>Fast delivery</strong>
+                        <small>on campus, 30 mins</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================================
+             Feature strip
+             ============================================================ -->
+        <section class="feature-strip">
+
+            <div class="feature">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3l7 3.5v5c0 4.2-2.9 8-7 9.5-4.1-1.5-7-5.3-7-9.5v-5z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </span>
+                <div>
+                    <strong>Best quality</strong>
+                    <small>Fresh ingredients, cooked to order</small>
+                </div>
+            </div>
+
+            <div class="feature">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M12 7v5l3 2"/>
+                    </svg>
+                </span>
+                <div>
+                    <strong>Live order status</strong>
+                    <small>Track it from kitchen to counter</small>
+                </div>
+            </div>
+
+            <div class="feature">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/>
+                        <path d="M2.5 10h19"/>
+                        <path d="M6.5 14.5h3"/>
+                    </svg>
+                </span>
+                <div>
+                    <strong>Card or transfer</strong>
+                    <small>Pay the way that suits you</small>
+                </div>
+            </div>
+
+            <div class="feature">
+                <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 8l-9-5-9 5 9 5 9-5z"/>
+                        <path d="M3 8v8l9 5 9-5V8"/>
+                        <path d="M12 13v8"/>
+                    </svg>
+                </span>
+                <div>
+                    <strong>Stock aware</strong>
+                    <small>Only what the kitchen can actually make</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ============================================================
+             Menu + cart
+             ============================================================ -->
+        <section id="menu" class="menu-section">
+
+            <div class="section-head">
+                <div>
+                    <p class="section-eyebrow">Our menu</p>
+                    <h2>Popular dishes</h2>
+                    <p class="muted">Everything below is available in the kitchen right now.</p>
+                </div>
+            </div>
+
+            <!-- Category filter, filled in by app.js from /api/categories -->
+            <div id="category-chips" class="category-chips"></div>
+
+            <div class="menu-layout">
+
+                <div id="menu-container" class="menu-grid">
+                    <p class="muted">Loading the menu&hellip;</p>
+                </div>
+
+                <aside id="cart" class="cart-panel">
+
+                    <h3>
+                        <span class="icon icon-sm" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="20" r="1.4"/>
+                                <circle cx="18" cy="20" r="1.4"/>
+                                <path d="M2 3h3l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h8.4a1.8 1.8 0 0 0 1.8-1.4L21 7H6"/>
+                            </svg>
+                        </span>
+                        Your cart
+                    </h3>
+
+                    <div id="cart-container">
+                        <p class="muted">Your cart is empty.</p>
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================================================
+         Footer
+         ============================================================ -->
+    <footer class="site-footer">
+
+        <div class="footer-grid">
+
+            <div>
+                <p class="footer-brand">UI Restaurant</p>
+                <p class="muted">
+                    Good food, great taste, served fresh to the University of Ibadan community.
+                </p>
+            </div>
+
+            <div>
+                <p class="footer-heading">Order</p>
+                <a href="index.html">Menu</a>
+                <a href="orders/index.html">My orders</a>
+                <a href="profile/index.html">Profile</a>
+            </div>
+
+            <div>
+                <p class="footer-heading">Contact</p>
+                <p class="muted">University of Ibadan</p>
+                <p class="muted">Oyo State, Nigeria</p>
+            </div>
+
+        </div>
+
+        <p class="footer-note muted">
+            CSC 302 group project &#183; Restaurant Ordering and Inventory System
+        </p>
+
+    </footer>
+
+
+    <script src="../js/api.js?v=1"></script>
+
+    <script src="../js/site-nav.js?v=1"></script>
+
+    <script src="js/app.js?v=2"></script>
+
+</body>
+</html>

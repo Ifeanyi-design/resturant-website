@@ -1,0 +1,18 @@
+/* ============================================================================
+ *  SUPPLIER MANAGEMENT
+ * ============================================================================
+ *  Everything else comes from css/tokens.css and css/components.css. Only
+ *  these two things are screen-specific:
+ *
+ *    1. the form is hidden on load and revealed by app.js, which flips the
+ *       inline display to "block" - so this rule must NOT use !important;
+ *    2. the 7-column table needs a minimum width so .table-container scrolls.
+ * ========================================================================= */
+
+.form-section {
+    display: none;
+}
+
+table {
+    min-width: 900px;
+}

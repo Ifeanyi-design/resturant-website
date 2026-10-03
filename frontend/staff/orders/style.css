@@ -1,0 +1,37 @@
+/* ============================================================================
+ *  Staff > Orders
+ * ============================================================================
+ *  Everything visual comes from tokens.css + components.css. Only the rules
+ *  below are screen-specific:
+ *    - the wide table keeps a min-width so .table-container can scroll it
+ *    - View / Process must read as two different actions, so they override the
+ *      shared .action-btn colour
+ * ========================================================================= */
+
+table {
+    min-width: 750px;
+}
+
+.view-btn {
+    background: var(--color-info-soft);
+    color: var(--color-info);
+}
+
+.process-btn {
+    background: var(--color-success-soft);
+    color: var(--color-success);
+}
+
+.view-btn:hover:not(:disabled),
+.process-btn:hover:not(:disabled) {
+    filter: brightness(0.96);
+}
+
+/* A full-width cell is a loading, empty or "no match" placeholder rather than
+   data, so it reads as one calm centred line. */
+tbody td[colspan] {
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--color-ink-muted);
+    font-size: var(--text-sm);
+}

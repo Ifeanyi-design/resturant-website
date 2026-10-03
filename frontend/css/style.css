@@ -1,0 +1,44 @@
+/* ============================================================================
+ *  Sign-in page
+ * ============================================================================
+ *  The split-screen shell (.auth-shell / .auth-brand / .auth-form-side) now
+ *  lives in components.css, because the customer sign-up page uses the same
+ *  pattern. What is left here is only what is specific to signing IN.
+ * ========================================================================= */
+
+#login-form .form-group {
+    margin-bottom: var(--space-4);
+}
+
+#login-form button[type="submit"] {
+    margin-top: var(--space-2);
+    padding: 12px var(--space-4);
+}
+
+/* The status line stays out of the way until app.js writes something. */
+#login-message:empty {
+    display: none;
+}
+
+#login-message {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
+    border: 1px solid rgba(192, 57, 43, 0.22);
+}
+
+/* Secondary route for someone who only wants to follow an order. */
+.track-link {
+    margin-top: var(--space-4);
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-ink-muted);
+}
+
+.track-link a {
+    font-weight: var(--weight-semibold);
+}

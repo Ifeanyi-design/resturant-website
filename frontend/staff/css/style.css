@@ -1,0 +1,17 @@
+/* ============================================================================
+ *  Staff dashboard
+ * ============================================================================
+ *  Intentionally empty.
+ *
+ *  Every rule this file used to hold - the topbar, the container, the welcome
+ *  panel, the dashboard grid and the cards - now lives in the shared layer:
+ *
+ *      ../css/tokens.css       design tokens
+ *      ../css/components.css   the component layer
+ *
+ *  Kept as a file (rather than removed) so the page's <link> stays valid and
+ *  there is an obvious place to put a genuinely dashboard-specific rule later.
+ *
+ *  If you add a rule here, first check components.css - if it is a generic
+ *  pattern, it belongs there instead, so the other 25 screens get it too.
+ * ========================================================================= */

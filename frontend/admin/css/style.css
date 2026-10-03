@@ -1,0 +1,8 @@
+/* ============================================================================
+ *  ADMIN DASHBOARD
+ * ============================================================================
+ *  This screen needs no rules of its own. Everything it renders - the .topbar
+ *  chrome, the .container layout, the .cards / .card stat tiles, the
+ *  .management-grid of .dashboard-btn destinations and the .stat-value
+ *  numbers - is already defined in css/components.css.
+ * ========================================================================= */

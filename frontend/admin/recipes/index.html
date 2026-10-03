@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recipe Mapping - UI Restaurant</title>
+
+    <link rel="stylesheet" href="../../css/tokens.css?v=1">
+    <link rel="stylesheet" href="../../css/components.css?v=1">
+    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- Rendered by ../../js/shell.js -->
+        <aside class="sidebar" id="app-sidebar"></aside>
+
+        <div class="shell-main">
+
+            <header class="shell-header">
+
+                <div>
+                    <h1>Recipe Mapping</h1>
+                    <p>Which ingredients each dish consumes</p>
+                </div>
+
+                <div class="shell-header-actions">
+
+                    <button type="button" id="nav-toggle" aria-label="Toggle navigation">
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18"/>
+                                <path d="M3 12h18"/>
+                                <path d="M3 18h18"/>
+                            </svg>
+                        </span>
+                    </button>
+
+                </div>
+
+            </header>
+
+            <main class="shell-content">
+
+                <div id="message" role="status" aria-live="polite"></div>
+
+
+                <!-- ============================================================
+                     Why this screen exists
+                     ============================================================ -->
+                <section class="panel">
+
+                    <p class="hint">
+                        Stock is deducted automatically when an order is completed, using the
+                        mapping below. A menu item with <strong>no ingredients mapped cannot be
+                        ordered at all</strong> — the kitchen would have no way to know what it
+                        consumes.
+                    </p>
+
+                </section>
+
+
+                <!-- ============================================================
+                     Pick a dish
+                     ============================================================ -->
+                <section class="panel">
+
+                    <h3>Choose a menu item</h3>
+
+                    <div class="form-group">
+                        <label for="item-select">Menu item</label>
+
+                        <select id="item-select">
+                            <option value="">Loading menu&hellip;</option>
+                        </select>
+                    </div>
+
+                    <p class="hint" id="item-status"></p>
+
+                </section>
+
+
+                <!-- ============================================================
+                     Ingredients
+                     ============================================================ -->
+                <section class="panel" id="recipe-panel" hidden>
+
+                    <div class="section-header">
+
+                        <h3 id="recipe-heading">Ingredients</h3>
+
+                        <button id="add-row-btn" class="add-btn" type="button">
+                            Add ingredient
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Inventory item</th>
+                                    <th>Quantity per unit sold</th>
+                                    <th>Unit</th>
+                                    <th>
+                                        <span class="sr-only">Remove</span>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="rows-body"></tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <p class="hint" id="stock-note"></p>
+
+
+                    <div class="form-actions">
+
+                        <button id="save-btn" class="save-btn" type="button">
+                            Save recipe
+                        </button>
+
+                        <button id="revert-btn" class="cancel-btn" type="button">
+                            Revert changes
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <div class="nav-scrim"></div>
+
+
+    <script src="../../js/api.js?v=1"></script>
+
+    <script src="../../js/shell.js?v=1"></script>
+
+    <script src="../../js/table-tools.js?v=1"></script>
+
+    <script src="app.js?v=1"></script>
+
+</body>
+</html>

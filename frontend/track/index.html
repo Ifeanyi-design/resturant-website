@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track your order - UI Restaurant</title>
+
+    <link rel="stylesheet" href="../css/tokens.css?v=1">
+    <link rel="stylesheet" href="../css/components.css?v=1">
+    <!-- The storefront chrome (header, brand, footer, summary panel) lives in
+         the customer stylesheet; this page reuses it so tracking looks like
+         part of the same site rather than a separate tool. -->
+    <link rel="stylesheet" href="../customer/css/style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=1">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+
+</head>
+
+
+<body class="shop">
+
+    <!-- ============================================================
+         Header. This page is public, so it does not use the signed-in
+         storefront nav - just the brand and a way in.
+         ============================================================ -->
+    <header class="site-nav">
+
+        <a class="brand" href="../customer/index.html">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 3v8a2 2 0 0 0 4 0V3"/>
+                    <path d="M7 11v10"/>
+                    <path d="M17 3c-1.7 1-2.5 2.8-2.5 5s.8 3.4 2.5 4v9"/>
+                </svg>
+            </span>
+
+            <span class="brand-text">
+                <strong>UI Restaurant</strong>
+                <small>University of Ibadan</small>
+            </span>
+        </a>
+
+        <div class="nav-actions">
+            <a class="action-btn btn-sm" href="../index.html">Sign in</a>
+        </div>
+
+    </header>
+
+
+    <main class="track-wrap">
+
+        <!-- ============================================================
+             Intro
+             ============================================================ -->
+        <section class="track-intro">
+
+            <p class="section-eyebrow">Order tracking</p>
+            <h1>Where is my food?</h1>
+            <p class="muted">
+                Enter your order number and the phone number or email you used,
+                and we will show you exactly where it is.
+            </p>
+
+        </section>
+
+
+        <!-- ============================================================
+             Lookup form
+             ============================================================ -->
+        <section class="panel track-form-panel">
+
+            <form id="track-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="order-id">Order number</label>
+                        <input
+                            type="number"
+                            id="order-id"
+                            inputmode="numeric"
+                            placeholder="e.g. 12"
+                            min="1"
+                            required
+                        >
+                        <span class="field-hint">The number on your receipt</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Phone or email</label>
+                        <input
+                            type="text"
+                            id="contact"
+                            placeholder="08031234567"
+                            autocomplete="tel"
+                            required
+                        >
+                        <span class="field-hint">Whichever you gave when ordering</span>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="track-btn" class="save-btn">
+                        <span class="icon icon-sm" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="7"/>
+                                <path d="M20 20l-3.5-3.5"/>
+                            </svg>
+                        </span>
+                        Track order
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ============================================================
+             Result
+             ============================================================ -->
+        <div id="message" role="status" aria-live="polite"></div>
+
+        <section id="result" class="track-result" hidden>
+
+            <div class="track-head">
+
+                <div>
+                    <p class="section-eyebrow">Order</p>
+                    <h2 id="result-order">#&mdash;</h2>
+                    <p class="muted" id="result-placed">&mdash;</p>
+                </div>
+
+                <div class="track-head-meta">
+                    <span class="status" id="result-payment">&mdash;</span>
+                </div>
+
+            </div>
+
+
+            <!-- Progress timeline, built by app.js -->
+            <ol id="timeline" class="track-steps"></ol>
+
+
+            <div class="track-body">
+
+                <section class="panel">
+                    <h3>
+                        What you ordered
+                        <span class="hint" id="result-count"></span>
+                    </h3>
+
+                    <div id="result-items"></div>
+                </section>
+
+                <aside class="summary-panel">
+                    <h2>Total</h2>
+
+                    <div class="summary-line">
+                        <span>Order status</span>
+                        <span id="result-status">&mdash;</span>
+                    </div>
+
+                    <div class="summary-line total">
+                        <span>Amount</span>
+                        <span id="result-total">&mdash;</span>
+                    </div>
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <p class="track-help muted">
+            Cannot find your order? Ask at the counter, or
+            <a href="../customer/index.html">sign in</a> to see all of your orders at once.
+        </p>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="footer-grid">
+
+            <div>
+                <p class="footer-brand">UI Restaurant</p>
+                <p class="muted">
+                    Good food, great taste, served fresh to the University of Ibadan community.
+                </p>
+            </div>
+
+            <div>
+                <p class="footer-heading">Order</p>
+                <a href="../customer/index.html">Menu</a>
+                <a href="index.html">Track an order</a>
+            </div>
+
+            <div>
+                <p class="footer-heading">Contact</p>
+                <p class="muted">University of Ibadan</p>
+                <p class="muted">Oyo State, Nigeria</p>
+            </div>
+
+        </div>
+
+        <p class="footer-note muted">
+            CSC 302 group project &#183; Restaurant Ordering and Inventory System
+        </p>
+
+    </footer>
+
+
+    <script src="../js/api.js?v=1"></script>
+
+    <script src="app.js?v=1"></script>
+
+</body>
+
+</html>

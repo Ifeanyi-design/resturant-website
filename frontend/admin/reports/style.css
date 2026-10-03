@@ -1,0 +1,19 @@
+/* ============================================================================
+ *  Reports dashboard
+ * ============================================================================
+ *  No rules needed.
+ *
+ *  This screen was written before the shared layer existed and carried its own
+ *  copy of the topbar, stat tiles, panels, tables and status pills. All of that
+ *  now comes from:
+ *
+ *      ../../css/tokens.css       design tokens
+ *      ../../css/components.css   the component layer
+ *
+ *  The page's icon tiles use the shared `.icon-badge` component, and both
+ *  tables scroll inside the shared `.table-container`, so there is nothing
+ *  screen-specific left to declare.
+ *
+ *  If you add a rule here, first check components.css - if it is a generic
+ *  pattern, it belongs there instead, so the other 25 screens get it too.
+ * ========================================================================= */

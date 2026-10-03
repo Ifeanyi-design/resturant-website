@@ -1,0 +1,15 @@
+/* ============================================================================
+ *  Intentionally empty.
+ * ============================================================================
+ *  This page's chrome (nav, footer), its layout patterns (page-head, steps,
+ *  panels, order cards, bank card, auth shell) and every control all come from
+ *  the shared layer:
+ *
+ *      ../../css/tokens.css        design tokens
+ *      ../../css/components.css    generic components
+ *      ../css/style.css            customer storefront + inner-page patterns
+ *
+ *  Kept as a file so the page's <link> stays valid, and so there is an obvious
+ *  place for a genuinely page-specific rule later. If you add one here, check
+ *  ../css/style.css first - if it is a shared pattern it belongs there.
+ * ========================================================================= */

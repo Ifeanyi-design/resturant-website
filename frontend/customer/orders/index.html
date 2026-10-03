@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders - Restaurant System</title>
+
+    <link rel="stylesheet" href="../../css/tokens.css?v=1">
+    <link rel="stylesheet" href="../../css/components.css?v=1">
+    <link rel="stylesheet" href="../css/style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=2">
+
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+
+</head>
+
+
+<body class="shop">
+
+    <header class="site-nav">
+
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 3v8a2 2 0 0 0 4 0V3"/>
+                    <path d="M7 11v10"/>
+                    <path d="M17 3c-1.7 1-2.5 2.8-2.5 5s.8 3.4 2.5 4v9"/>
+                </svg>
+            </span>
+
+            <span class="brand-text">
+                <strong>UI Restaurant</strong>
+                <small>University of Ibadan</small>
+            </span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Menu</a>
+            <a href="index.html" aria-current="page">My Orders</a>
+            <a href="../profile/index.html">Profile</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="cart-pill" href="../index.html#cart">
+                <span class="icon icon-sm" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="20" r="1.4"/>
+                        <circle cx="18" cy="20" r="1.4"/>
+                        <path d="M2 3h3l2.4 11.2a1.8 1.8 0 0 0 1.8 1.4h8.4a1.8 1.8 0 0 0 1.8-1.4L21 7H6"/>
+                    </svg>
+                </span>
+                Cart
+            </a>
+        </div>
+
+    </header>
+
+
+    <main class="page-wrap">
+
+        <div class="page-head">
+            <p class="section-eyebrow">Your account</p>
+            <h1>My orders</h1>
+            <p>Track what you have ordered and settle any outstanding payment.</p>
+        </div>
+
+
+        <div id="orders-container">
+            <p class="muted">Loading your orders&hellip;</p>
+        </div>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="footer-grid">
+
+            <div>
+                <p class="footer-brand">UI Restaurant</p>
+                <p class="muted">
+                    Good food, great taste, served fresh to the University of Ibadan community.
+                </p>
+            </div>
+
+            <div>
+                <p class="footer-heading">Order</p>
+                <a href="../index.html">Menu</a>
+                <a href="index.html">My orders</a>
+                <a href="../profile/index.html">Profile</a>
+            </div>
+
+            <div>
+                <p class="footer-heading">Contact</p>
+                <p class="muted">University of Ibadan</p>
+                <p class="muted">Oyo State, Nigeria</p>
+            </div>
+
+        </div>
+
+        <p class="footer-note muted">
+            CSC 302 group project &#183; Restaurant Ordering and Inventory System
+        </p>
+
+    </footer>
+
+
+    <script src="../../js/api.js?v=1"></script>
+
+    <script src="../../js/site-nav.js?v=1"></script>
+
+    <script src="app.js?v=1"></script>
+
+</body>
+
+</html>
