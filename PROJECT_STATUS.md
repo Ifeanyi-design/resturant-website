@@ -626,6 +626,83 @@ sign-up page overrides it with a different dish so the two pages are not identic
 
 ---
 
+## 0g. DEPLOYMENT PREP (3 October 2026)
+
+### The app is now ONE service
+
+The Express server serves the static frontend as well as the REST API. That is a structural change
+that makes hosting dramatically simpler:
+
+| Before | After |
+|---|---|
+| Frontend on one host, API on another | One process serves both |
+| CORS had to be configured and kept right | Requests are same-origin — CORS is not involved |
+| `http://localhost:3000/api` hardcoded in 21 files | Resolved from `window.location.origin` |
+| Two things to deploy, monitor and pay for | One |
+
+`server.js` now mounts `express.static(frontend)`, adds `/api/health` for the platform's health
+probe, and returns JSON 404s for unknown `/api` routes (anything else falls back to the sign-in
+page, so a mistyped URL does not show a JSON blob in a browser tab).
+
+The health check deliberately **does not touch the database**. A health probe that fails on a
+momentary database blip makes the platform restart a service that was working fine.
+
+`js/api.js` now resolves the API base as `window.location.origin + '/api'`, falling back to
+`http://localhost:3000/api` only when the page is opened over `file://` (where there is no origin to
+be relative to). A `window.API_BASE` override exists for a split deployment.
+
+### The database question — and why MySQL stays
+
+Render's free tier includes a free **Postgres**, and Render offers **no managed MySQL at all**. The
+obvious "fix" would be to migrate the data layer, but that means rewriting all 51 queries across 12
+files (`?` → `$n`, `AUTO_INCREMENT` → `IDENTITY`, `ENUM` → `CREATE TYPE`, `insertId` → `RETURNING`,
+`affectedRows` → `rowCount`).
+
+Two things ruled that out:
+
+**SQLite is not an option.** Render's free web service has an *ephemeral* filesystem — every deploy,
+restart, or spin-down after 15 minutes of inactivity wipes it, taking the database file with it.
+Persistent disks exist but are paid-only.
+
+**A genuinely free MySQL does exist.** Aiven's own documentation states the free MySQL tier has *no
+time limit* and needs no credit card: 1 node, 1 CPU, 1 GB RAM, 1 GB disk, 76 max connections.
+(Third-party sites describe it as a trial; Aiven's documentation is explicit that it is not.)
+
+So the stack is **Render free web service + Aiven free MySQL** — no code changes, no migration, £0.
+
+The one code change this required is `DB_SSL`, because managed MySQL providers require an encrypted
+connection and a local MariaDB does not. It is opt-in rather than always-on.
+
+### Files
+
+**New:** `render.yaml`, `DEPLOY.md` (step-by-step Aiven + Render setup), `README.md`, `.gitignore`
+
+**Modified:** `backend/server.js`, `backend/config/database.js` (SSL), `backend/config/env.js`
+(`ALLOWED_ORIGINS`), `backend/.env.example`, `frontend/js/api.js`, 21 frontend `app.js` files
+
+**Removed:** `start-frontend.bat` — a separate static server is now *wrong*, because the frontend
+expects the API on the same origin. `start-all.bat` and `start-backend.bat` were updated; the app
+now runs at **http://localhost:3000**.
+
+### Verified
+
+```
+Backend : 112 assertions — auth 35 · workflow 44 · recipe 19 · track 14 — 0 failures
+Browser : login at :3000 -> admin dashboard (12 nav links, 6 tiles, 1 chart, 3 low-stock rows)
+          -> storefront (10 dishes, 10 images, 0 broken) -> public tracking (4-step timeline)
+          -> no console errors
+```
+
+### Repository
+
+Initialised at `restaurant-system/` (the repo root **is** the app), 2 commits, 144 files,
+remote set to `github.com/Ifeanyi-design/resturant-website`.
+
+**No `.env` and no `node_modules` are tracked** — verified before both commits. The database password
+and JWT secret never leave the machine.
+
+---
+
 ## 1. Verdict in one paragraph
 
 The **backend is essentially feature-complete** against the PRD — roughly 51 endpoints across 9 modules, all 10 functional requirements implemented except one that is written but unreachable. The **frontend is also functionally complete** (25 screens, every one wired to a real endpoint) but is **visually unfinished and structurally duplicated** — 3,751 lines of CSS with zero design tokens, 23 near-copies of the same topbar/table/button rules, and no shared component layer. The single biggest problem is not missing features: it is that **there is no authentication on the server at all**, so the entire role-based access model (NFR2) is cosmetic and bypassable with one curl command. Second biggest: **there is no database schema file anywhere**, so the system cannot currently be reproduced on another machine.
