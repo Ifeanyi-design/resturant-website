@@ -7,6 +7,7 @@
     "dev": "node server.js",
     "start": "node server.js",
     "db:setup": "node database/setup.js && node database/add-test-accounts.js",
+    "db:setup:remote": "node database/setup.js",
     "db:schema": "node database/setup.js schema.sql",
     "db:seed": "node database/setup.js seed.sql",
     "db:accounts": "node database/add-test-accounts.js",

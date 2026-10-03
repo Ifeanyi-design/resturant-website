@@ -63,34 +63,66 @@ So: the app stays on MySQL, and the database comes from Aiven.
 
 ---
 
-## Step 2 — Create your own schema on Aiven
+## Step 2 — Load your schema into the Aiven database
 
-Your Aiven database is empty. Load the schema and seed data from your own
-machine, pointing at Aiven instead of localhost.
+Your Aiven database is **empty**. Loading the schema into it is the step people
+most often miss, and it is why a deployed app can load perfectly but refuse
+every login: the `users` table does not exist yet.
 
-In `backend/.env`, temporarily change the connection to the Aiven values:
-
-```env
-DB_HOST=<your aiven host>
-DB_PORT=<your aiven port>
-DB_USER=avnadmin
-DB_PASSWORD=<your aiven password>
-DB_NAME=defaultdb
-DB_SSL=true
-```
-
-Then, from `backend/`:
+**Run this from your own machine** (from `backend/`), pasting your own values:
 
 ```bash
-npm run db:setup
+npm run db:setup:remote -- --url="mysql://avnadmin:YOUR_PASSWORD@YOUR_HOST:YOUR_PORT/defaultdb"
 ```
 
-That creates all 12 tables, loads the sample data, and creates the three test
-accounts. Then **put your local values back** in `.env` so local development
-still uses your own MariaDB.
+For example:
 
-> `DB_SSL=true` is required for Aiven. `config/database.js` reads it and
-> enables an encrypted connection.
+```bash
+npm run db:setup:remote -- --url="mysql://avnadmin:AVNS_abc123@mysql-1a2b3c4d-project.a.aivencloud.com:12674/defaultdb"
+```
+
+You can copy the whole connection string straight from the Aiven console — the
+**Service URI** field — and paste it after `--url=`. If your password contains
+special characters (`@`, `#`, `/`), the console's URI will already have them
+escaped correctly, so copy rather than type it.
+
+Expected output:
+
+```
+Connected to mysql-1a2b3c4d-project.a.aivencloud.com:12674 as "avnadmin".
+Target database: defaultdb  (TLS)
+
+Applying schema.sql ...
+   schema.sql applied in 812 ms.
+
+Applying seed.sql ...
+   seed.sql applied in 1204 ms.
+
+Database setup complete.
+   tables in defaultdb: 12
+   users in  defaultdb: 5
+```
+
+**Check that `tables` says 12 and `users` says 5.** If tables is 0, the schema
+did not apply — read the error above it.
+
+> **Why this instead of editing `.env`?** Because swapping your `.env` to the
+> remote database and forgetting to swap it back is the easiest way to break
+> local development. This command takes the target as an argument and never
+> touches your `.env`.
+>
+> It also handles the database *name*: `schema.sql` hardcodes
+> `CREATE DATABASE restaurant_system`, so this rewrites it to match whatever
+> database your URL points at (Aiven gives you `defaultdb`).
+
+Now confirm the app agrees. Visit:
+
+```
+https://<your-app>.onrender.com/api/health/db
+```
+
+It should say **`"verdict": "LOOKS GOOD"`**. If it says something else, that
+endpoint names the problem directly.
 
 ---
 

@@ -83,8 +83,13 @@ ALTER TABLE restaurant_bank_accounts AUTO_INCREMENT = 1;
 --  USERS  (administrators and staff)
 -- ============================================================================
 INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES
-('System',  'Administrator', 'admin@restaurant.test', '$2b$10$TBwS3N4ULAklXHmW1LsvfuwF4Obgzd6BNSvnDdQCz3HWdPrYOyhVi', 'admin'),
-('Blessing','Adeyemi',       'staff@restaurant.test', '$2b$10$JrhTxJH5jiLseeWoAv.VKO6GuSHhOfv7/b4fehNuAvuoCYTOvwJ/C', 'staff');
+('System',  'Administrator', 'admin@restaurant.test',   '$2b$10$TBwS3N4ULAklXHmW1LsvfuwF4Obgzd6BNSvnDdQCz3HWdPrYOyhVi', 'admin'),
+('Blessing','Adeyemi',       'staff@restaurant.test',   '$2b$10$JrhTxJH5jiLseeWoAv.VKO6GuSHhOfv7/b4fehNuAvuoCYTOvwJ/C', 'staff'),
+-- These three are also created by database/add-test-accounts.js. They are
+-- duplicated here on purpose, so that a single `npm run db:setup:remote`
+-- produces a fully usable database in one command.
+('Ngozi',   'Adebayo',       'manager@restaurant.test', '$2b$10$mpakl7C7b1UruSKRhhTOyOlA175hylOBcG6g5kBbS7Vy5.63bM1ki', 'admin'),
+('Tunde',   'Bakare',        'cashier@restaurant.test', '$2b$10$Ln2fexKD/pbRU8BqY63jiealyHCeo8BbLZBUdLCXNHCyQ.HTJQQUC', 'staff');
 
 
 -- ============================================================================
@@ -95,6 +100,7 @@ INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES
 INSERT INTO customers (first_name, last_name, phone, email, password_hash) VALUES
 ('Ada',   'Okafor',  '08031234567', 'ada@example.com',   '$2b$10$fb5j7r6UWugZ6xCqFkrBA.8LjcxRmhDohxRTbfE/olN.XtfXW61ve'),
 ('Chidi', 'Balogun', '08087654321', 'chidi@example.com', '$2b$10$fb5j7r6UWugZ6xCqFkrBA.8LjcxRmhDohxRTbfE/olN.XtfXW61ve'),
+('Bola',  'Adeleke', '08055667788', 'bola@example.com',  '$2b$10$YU1FutDIYmSauOee2zW.4.RoIIGes3RXtkiiBJOTcTz1lN.iSQl9m'),
 ('Ngozi', 'Eze',     '07011223344', NULL,                NULL);
 
 
